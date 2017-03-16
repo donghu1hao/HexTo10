@@ -1,0 +1,36 @@
+public class OtherToTen {
+
+	public static void main(String[] args) {
+		// 16进制 --10进制
+		String digit = "AB12F6";
+		int hex = 16;
+		print(digit, hex);
+	}
+
+	private static void print(String digit, int hex) {
+		// int res = OtherToTen(digit, hex);
+		// System.out.println(res);
+		System.out.println(OtherToTen("16进制转换10进制  ：" + digit, hex));
+		System.out.println(OtherToTen("2进制转换10进制  ： " + 101011, 2));
+		System.out.println(OtherToTen("8进制转换10进制  ：" + 16677, 8));
+	}
+
+	private static int OtherToTen(String digit, int hex) {
+		int len = digit.length();
+		int res = 0;
+		int k = 0;
+		// 依次取出每个字符，转换成数字
+		for (int i = len - 1; i >= 0; i--) {
+			char temp = digit.charAt(i);
+			int item = Character.digit(temp, 16);
+			if (hex == 16)
+				res += item << ((4 * k));
+			if (hex == 8)
+				res += item << ((3 * k));
+			if (hex == 2)
+				res += item << ((1 * k));
+			k++;
+		}
+		return res;
+	}
+}
